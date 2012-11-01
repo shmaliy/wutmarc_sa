@@ -110,20 +110,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	    $router->addRoute('index', $route);
 	    /*-----------------------------*/
 	    
-	    /*  Области применения главная  */
-	    $route = new Zend_Controller_Router_Route(
-	    	':lang/deliveryforms.html',
-	    	array(
-	        	'module' => 'content',
-	    	    'controller' => 'new-index',
-	    	    'action'     => 'static-content-item',
-	    		'lang' => $lang,
-        		'2' => 'deliveryforms'
-	    	)
-	    );
-	    $router->addRoute('deliveryforms', $route);
-        
-		/* Статический контент */
+	    /* Статический контент */
 		$route = new Zend_Controller_Router_Route_Regex(
         	'([^.]+)+\/([^.]+).html',
         	array(
@@ -212,6 +199,34 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         );
         $router->addRoute('areas-of-use-item', $route);
         
+        
+        /*  Формы поставки главная  */
+        $route = new Zend_Controller_Router_Route(
+        	':lang/forms-of-supply',
+        	array(
+        	  	'module' => 'content',
+        	    'controller' => 'new-index',
+        	    'action'     => 'forms-of-supply-list',
+        	    'lang' => $lang,
+        	    'alias' => 'forms-of-supply'
+        	)
+        );
+        $router->addRoute('forms-of-supply-list', $route);
+        
+        /*  Формы поставки элемент  */
+        $route = new Zend_Controller_Router_Route(
+        	':lang/forms-of-supply/:id',
+        	array(
+              	'module' => 'content',
+                'controller' => 'new-index',
+                'action'     => 'forms-of-supply-item',
+                'lang' => $lang,
+                'alias' => 'forms-of-supply'
+        	)
+        );
+        $router->addRoute('forms-of-supply-item', $route);
+        
+        
 
         
         
@@ -227,32 +242,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         	)
         );
         $router->addRoute('reference-category', $route);
-        
-        /*  Формы поставки главная  */
-        $route = new Zend_Controller_Router_Route(
-        	':lang/forms-of-supply',
-        	array(
-            	'module' => 'default',
-                'controller' => 'index',
-                'action'     => 'index',
-                'lang' => $lang,
-                'alias' => 'reference'
-        	)
-        );
-        $router->addRoute('forms-of-supply-category', $route);
-        
-        /*  Формы поставки просмотр  */
-        $route = new Zend_Controller_Router_Route(
-        	':lang/forms-of-supply/:id',
-        	array(
-              	'module' => 'default',
-                'controller' => 'index',
-                'action'     => 'index',
-                'lang' => $lang,
-                'alias' => 'reference'
-        	)
-        );
-        $router->addRoute('forms-of-supply-view', $route);
         
         /*  Справка главная  */
         $route = new Zend_Controller_Router_Route(
