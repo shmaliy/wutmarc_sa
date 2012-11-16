@@ -95,8 +95,17 @@ class IndexController extends Zend_Controller_Action
     	$request = $this->getRequest();
     	$params = $request->getParams();
     	
+    	$sites = array(
+    				'/' => '',
+    				'http://global.wutmarc.com' => 'WUTMARC GLOBAL',
+    				'http://wt.wutmarc.com' => 'WUTMARC WELDING TECHNOLOGY',
+    				'http://ss.wutmarc.com' => 'WUTMARC STAINLESS STEEL',
+    				'http://nfm.wutmarc.com' => 'WUTMARC NON-FERROUS METALS'
+    	);
+    	
+    	
     	$form = new Application_Form_Sites();
-    	$form->getElement('sites')->setMultiOptions($form->sites('http://sa.wutmarc.com'));
+    	$form->getElement('sites')->setMultiOptions($sites);
     	$form->getElement('sites')->setAttrib(array('class'=>'sites'));
     	
     	$this->view->form = $form;
