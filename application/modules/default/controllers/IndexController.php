@@ -118,7 +118,7 @@ class IndexController extends Zend_Controller_Action
     	//$this->helper->arrayTrans($params);
     	 
     	$item = $this->_contentModel->getStaticContentItem($params['book']);
-    	$item['image'] = $this->_image->setImage($item['image'], 'thumbs_200px')->resizeToWidth(200);
+    	$item['image'] = $this->_image->setImage(str_replace('_ru', '_' . Zend_Registry::get('lang'), $item['image']), 'thumbs_200px')->resizeToWidth(200);
     	//$this->helper->arrayTrans($item);
     	 
     	$this->view->item = $item;
